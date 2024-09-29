@@ -9,7 +9,7 @@ echo "#############################"
 echo
 echo "Native Packages..."
 echo
-sudo pacman -S --noconfirm --needed kvantum unzip jq xmlstarlet fastfetch gtk-engine-murrine gtk-engines ttf-hack-nerd ttf-fira-code kdeconnect ttf-terminus-nerd noto-fonts-emoji ttf-meslo-nerd kde-wallpapers
+sudo pacman -S --noconfirm --needed sbctl kvantum unzip jq xmlstarlet fastfetch gtk-engine-murrine gtk-engines ttf-hack-nerd ttf-fira-code kdeconnect ttf-terminus-nerd noto-fonts-emoji ttf-meslo-nerd
 echo
 echo "AUR Packages..."
 echo
@@ -24,7 +24,7 @@ else
     exit 1
 fi
 # Install packages using the detected AUR helper
-$aur_helper -S --noconfirm --needed ttf-meslo-nerd-font-powerlevel10k tela-circle-icon-theme-purple
+$aur_helper -S --noconfirm --needed ttf-meslo-nerd-font-powerlevel10k tela-circle-icon-theme-purple archlinux-tweak-tool-git plasma6-applets-window-title
 sleep 2
 echo
 echo "Creating Backup & Applying new Rice, hold on..."
@@ -109,13 +109,13 @@ add_lines
 echo "Oh-My-Posh injection complete."
 sleep 3
 echo
-echo "Applying Grub Theme...."
-echo "#######################"
-chmod +x Grub.sh
-sudo ./Grub.sh
-sudo sed -i "s/GRUB_GFXMODE=*.*/GRUB_GFXMODE=1920x1080x32/g" /etc/default/grub
-sudo grub-mkconfig -o /boot/grub/grub.cfg
-sleep 2
+# echo "Applying Grub Theme...."
+# echo "#######################"
+# chmod +x Grub.sh
+# sudo ./Grub.sh
+# sudo sed -i "s/GRUB_GFXMODE=*.*/GRUB_GFXMODE=1920x1080x32/g" /etc/default/grub
+# sudo grub-mkconfig -o /boot/grub/grub.cfg
+# sleep 2
 echo
 echo "Installing Layan Theme"
 echo "######################"
@@ -131,3 +131,6 @@ cd ~ && rm -Rf Layan-gtk-theme/
 echo
 echo "Plz Reboot To Apply Settings..."
 echo "###############################"
+echo
+echo "Important Links..."
+echo "https://wiki.cachyos.org/configuration/secure_boot_setup/"
