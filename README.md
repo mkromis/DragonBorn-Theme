@@ -20,4 +20,6 @@ git clone https://github.com/mkromis/DragonBorn-Theme.git
 cd DragonBorn-Theme/ && ./install.sh
 ```
 
+* Grub theming is not being used. Keeping old file for possible future use.
+
 For more detailed info visit the [**Wiki**](https://wiki.xerolinux.xyz/rice/)

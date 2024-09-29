@@ -83,15 +83,17 @@ echo
 sleep 3
 echo "Injecting OMP to .bashrc"
 
-# Define the lines to be added
-line1='# Oh-My-Posh Config'
-line2='eval "$(oh-my-posh init bash --config $HOME/.config/ohmyposh/xero.omp.json)"'
-
-# Define the .bashrc file
-bashrc_file="$HOME/.bashrc"
-
 # Function to add lines if not already present
 add_lines() {
+
+  # Define the lines to be added
+  line1='# Oh-My-Posh Config'
+  line2='eval "$(oh-my-posh init bash --config $HOME/.config/ohmyposh/xero.omp.json)"'
+
+  # Define the .bashrc file
+  bashrc_file="$HOME/.bashrc"
+
+  # bash file
   if ! grep -qxF "$line1" "$bashrc_file"; then
     echo "" >> "$bashrc_file"  # Add an empty line before line1
     echo "$line1" >> "$bashrc_file"
@@ -101,6 +103,20 @@ add_lines() {
     echo "$line2" >> "$bashrc_file"
     echo "" >> "$bashrc_file"  # Add an empty line after line2
   fi
+
+  # Add fish support
+  fish_config="$HOME/.config/fish/config.fish"
+  line2='eval "$(oh-my-posh init fish --config $HOME/.config/ohmyposh/xero.omp.json)"'
+
+  if ! grep -qxF "$line1" "$fish_config"; then
+    echo "" >> "$fish_config"  # Add an empty line before line1
+    echo "$line1" >> "$fish_config"
+  fi
+
+  if ! grep -qxF "$line2" "$fish_config"; then
+    echo "$line2" >> "$fish_config"
+    echo "" >> "$fish_config"  # Add an empty line after line2
+  fi
 }
 
 # Run the function to add lines
@@ -108,7 +124,10 @@ add_lines
 
 echo "Oh-My-Posh injection complete."
 sleep 3
+
+# Grub Install
 echo
+echo "Skipping Grub Theme..."
 # echo "Applying Grub Theme...."
 # echo "#######################"
 # chmod +x Grub.sh
@@ -116,6 +135,7 @@ echo
 # sudo sed -i "s/GRUB_GFXMODE=*.*/GRUB_GFXMODE=1920x1080x32/g" /etc/default/grub
 # sudo grub-mkconfig -o /boot/grub/grub.cfg
 # sleep 2
+
 echo
 echo "Installing Layan Theme"
 echo "######################"
@@ -123,11 +143,13 @@ echo
 cd ~ && git clone https://github.com/vinceliuice/Layan-kde.git && cd Layan-kde/ && sh install.sh
 cd ~ && rm -Rf Layan-kde/
 sleep 2
+
 echo
 echo "Installing & Applying GTK4 Theme "
 echo "#################################"
 cd ~ && git clone https://github.com/vinceliuice/Layan-gtk-theme.git && cd Layan-gtk-theme/ && sh install.sh -l -c dark -d $HOME/.themes
 cd ~ && rm -Rf Layan-gtk-theme/
+
 echo
 echo "Plz Reboot To Apply Settings..."
 echo "###############################"
